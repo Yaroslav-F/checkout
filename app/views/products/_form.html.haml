@@ -1,0 +1,10 @@
+= render "shared/errors_explanation", obj: @product
+.row
+  .col-md-3
+    = simple_form_for @product do |f|
+
+      = f.input :product_code
+      = f.input :name
+      = f.input :image
+      = f.input :price_pennies, as: :float, hint: "", input_html: { min: 0, class: "pennies-input" }
+      = f.submit "Save", class: "btn btn-primary"

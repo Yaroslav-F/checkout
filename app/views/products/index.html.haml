@@ -1,0 +1,51 @@
+.container
+  .row
+    .col-md-12
+      %h4 Products:
+      .table-responsive
+        %table#products-table.table.table-bordered.table-striped.table-hover
+          %thead
+            %th.col-md-2.text-center Product Code
+            %th.col-md-2.text-center Image
+            %th.col-md-5.text-center Name
+            %th.col-md-2.text-center Price
+            %th.col-md-1.text-center Scan
+            %th.col-md-1.text-center Edit
+            %th.col-md-1.text-center Delete
+          %tbody.text-center
+            - @products.each do |product|
+              %tr
+                %td= product.product_code
+                %td= image_tag product.image, width: 70
+                %td= product.name
+                %td= product.price.format
+                %td.text-center
+                  = link_to "javascript:void(0)", title: 'Scan', class: "btn btn-success scan-item", data: { id: product.id } do
+                    %i.fa.fa-cart-arrow-down
+                %td.text-center
+                  = link_to edit_product_path(product), class: "btn btn-warning", title: "Edit" do
+                    %i.fa.fa-pencil
+                %td.text-center
+                  = link_to product_path(product), method: :delete, data: { confirm: "Are you sure? This can not be undone." }, class: "btn btn-danger", title: "Delete" do
+                    %i.fa.fa-remove
+        = paginate @products
+      = link_to "New Product", new_product_path, class: "btn btn-primary pull-right"
+
+  .row
+    .col-md-6
+      %h4 Checkout:
+      .table-responsive
+        %table#checkout-table.table.table-bordered.table-striped.table-hover
+          %thead
+            %th.col-md-1.text-center Quantity
+            %th.col-md-2.text-center Product Code
+            %th.col-md-2.text-center Image
+            %th.col-md-4.text-center Name
+            %th.col-md-2.text-center Price
+          %tfoot
+            %tr
+              %td{colspan: 5, class: "text-center"}
+                Total Price:
+                %strong#checkout-price
+                  £0
+          %tbody.text-center

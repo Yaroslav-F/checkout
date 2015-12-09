@@ -1,0 +1,6 @@
+= render "shared/errors_explanation", obj: @rule
+= simple_form_for @rule do |f|
+  .row
+    .col-md-3
+      = render "#{f.object.type.underscore}_fields", f: f
+      = f.submit "Save", class: "btn btn-primary"

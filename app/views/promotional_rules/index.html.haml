@@ -1,0 +1,47 @@
+.row
+  .col-md-6
+    %h4 General Limit Rules
+    .table-responsive
+      %table.table.table-bordered.table-striped.table-hover
+        %thead
+          %th.col-md-4 Limit
+          %th.col-md-6 Discount Percentage
+          %th.col-md-1
+          %th.col-md-1
+        %tbody
+          - @general_rules.each do |rule|
+            %tr
+              %td= rule.limit.format
+              %td= rule.discount_percentage
+              %td.text-center
+                = link_to edit_general_limit_promotion_path(rule), class: "btn btn-warning" do
+                  %i.fa.fa-pencil
+              %td.text-center
+                = link_to general_limit_promotion_path(rule), method: :delete, data: { confirm: "Are you sure? This can not be undone." }, class: "btn btn-danger" do
+                  %i.fa.fa-remove
+    = link_to "New General Limit Rule", new_general_limit_promotion_path(type: "GeneralLimitPromotion"), class: "btn btn-primary"
+
+  .col-md-6
+    %h4 Product Specific Rules
+    .table-responsive
+      %table#usersTable.table.table-bordered.table-striped.table-hover
+        %thead
+          %th Product
+          %th Quantity
+          %th Reduced Price
+          %th.col-md-1
+          %th.col-md-1
+        %tbody
+          - @product_rules.each do |rule|
+            %tr
+              %td= rule.product_name
+              %td= rule.quantity
+              %td= rule.reduced_price.format
+              %td.text-center
+                = link_to edit_product_promotion_path(rule), class: "btn btn-warning" do
+                  %i.fa.fa-pencil
+              %td.text-center
+                = link_to product_promotion_path(rule), method: :delete, data: { confirm: "Are you sure? This can not be undone." }, class: "btn btn-danger" do
+                  %i.fa.fa-remove
+
+    = link_to "New Product Specific Rule", new_product_promotion_path(type: "ProductPromotion"), class: "btn btn-primary"

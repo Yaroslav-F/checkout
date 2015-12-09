@@ -1,0 +1,24 @@
+%html
+  %head
+    %title AlliantsInterviewTest
+    = favicon_link_tag
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
+    = javascript_include_tag 'application', 'data-turbolinks-track' => true
+    = csrf_meta_tags
+  %body
+    %nav.navbar.navbar-inverse
+      .container-fluid
+        .navbar-header
+          = link_to "AlliantsInterviewTest", root_path, class: "navbar-brand"
+        %div
+          %ul.nav.navbar-nav.navbar-right
+            %li
+              = link_to root_path do
+                %span.fa.fa-shopping-cart
+                Products
+            %li
+              = link_to promotional_rules_path do
+                %span.fa.fa-diamond
+                Promotion Rules
+    .container
+      = yield
